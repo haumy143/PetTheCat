@@ -1,0 +1,23 @@
+Anforderungen:
+    - Großer roter Knopf
+    - Counter, der hochzählt
+    - Klicks pro Sekunde (Auotklicks)
+    - Visuelles Feedback, zeigt an wie viel Währung pro Klick
+    - Achievements
+    - Skill-Tree, aktives Spielverhalten gegen passives Spielverhalten
+
+    Nice-to-have:
+    - Balancing
+    - Temporäre Boosts
+
+TO-DO:
+    - Setting, Lore ausdenken (Roter Button, Katze, Tür öffnen)
+
+
+Data Design:
+    - Manuelle Klicks, Autoklicks, Gesamtklicks, Klicks/Sekunde seperat zählen
+    - Währung pro Klick, Währung gesamt, aktuelle Währung
+
+Tag 1 Ziele:
+    - Gut strukturierte HTML-Seite aufbauen
+    - Grundfunktionalität herstellen
