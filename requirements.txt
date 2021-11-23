@@ -20,4 +20,8 @@ Data Design:
 
 Tag 1 Ziele:
     - Gut strukturierte HTML-Seite aufbauen
+    - Clemens: Styling/Layout
+    - Max: JavaScript
     - Grundfunktionalität herstellen
+
+hallo max 
