@@ -5,14 +5,16 @@ Anforderungen:
     - Visuelles Feedback, zeigt an wie viel Währung pro Klick
     - Achievements
     - Skill-Tree, aktives Spielverhalten gegen passives Spielverhalten
+    - Statusleiste, die anzeigt, wenn man nicht genug geld hat
 
     Nice-to-have:
     - Balancing
     - Temporäre Boosts
+    - Sounds für das Kätzchen
+    - Infos zu Items beim Hovern
 
 TO-DO:
     - Setting, Lore ausdenken (Roter Button, Katze, Tür öffnen)
-
 
 Data Design:
     - Manuelle Klicks, Autoklicks, Gesamtklicks, Klicks/Sekunde seperat zählen
