@@ -4,63 +4,51 @@
 }
 
 .button_container {
+    /* background-image:  url(cat.png);
+    background-repeat: no-repeat; */
     display: flex;
-    justify-content: center;
+    margin: auto;
     align-items: center;
     text-align: center;
-    min-height: 10vh;
+    height: 568px;
+    width:  860px;
+    user-drag: none;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
     }
 
+.main_clicker{
+    background:url(cat.png) no-repeat;
+    /* background-image:  url(cat.png);
+    background-repeat: no-repeat; */
+}
 
 
 /* -------------Stat_Container------------------ */
 #stat_container{
+    background-image: url(content/stat_frame.jpg);
+    background-size: 740px 165px;
+    background-repeat: no-repeat;
     margin: auto;
-    margin-top: px;
     font-family: Arial, Helvetica, sans-serif;
-    width: 45em;
-    height: 3em;
-    background-color: black;
-    border: 2px solid white;
-    padding: 80px 120px;
+    width: 500px;
+    height: 100px; 
+    padding: 30px 120px;
 }
-
-/* #income_click{
-    margin-top: auto;
-    margin-left: auto;
-    margin-right: auto;
-    width: 10em;
-    height: auto;
-    border: 2px solid white;
-    padding: 8px 12px;
-}
-
-#income_auto{
-    margin-left: auto;
-    margin-right: auto;
-    width: 10em;
-    height: auto;
-    border: 2px solid white;
-    padding: 8px 12px;
-}
-
-#current_balance{
-    margin-left: auto;
-    margin-right: auto;
-    width: 10em;
-    height: auto;
-    border: 2px solid white;
-    padding: 8px 12px;
-} */
 
 .stats_container{
     display: inline-block;
-    border: 2px solid white;
-    margin-top: px;
-    justify-content: center;
+    /* border: 2px solid black; */
+    /* margin-top: auto; */
+    margin-left: auto;
+    margin-right: 30px;
+    /* justify-content: center; */
     width: auto;
     height: 3em;
-    padding: 8px;
+    /* padding: 8px; */
 }
 
 .stats_container p{
@@ -69,13 +57,24 @@
 }
 
 
-
-
+/* -----------------Achievement Container-------------------------- */
 
 #achievement_container{
 
 }
-
+/* ----------------------Shop Container ----------------------------*/
 #shop_container{
-
+    grid-template-columns: auto auto auto;
+    background-image: url(content/stat_frame.jpg);
+    display: grid;
+    background-size: 740px 165px;
+    background-repeat: no-repeat;
+    margin: auto;
+    margin-top: px;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 500px;
+    height: 60px;
+    background-color: black;
+    border: 2px solid white;
+    padding: 50px 120px;
 }
