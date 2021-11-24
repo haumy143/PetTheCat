@@ -7,8 +7,8 @@ let lifetime_currency = 0;
 let total_clicks = 0;
 let currency_per_click = 1;
 let auto_income_rate = 0;
-let game_interval_timer = 1000;
-let html_update_timer = 40;
+let game_interval_timer = 1000; //Add auto income every 1000ms = 1s
+let html_update_timer = 40;     //Update HTML-Elements every 40ms = 25 times/per second
 
 //Writing elements into variables
 let currencyElement = document.getElementById("current_balance");
@@ -17,7 +17,6 @@ let autoIncomeElement = document.getElementById("income_auto");
 
 //Data Structure for buyItem(), adjust values of buyable items only here
 const itemMap = {
-
     "manual_option1" : {
         "name" : "TBD",
         "type" : "manual",
@@ -51,11 +50,9 @@ const itemMap = {
 //Executes on window load
 window.onload = function() {
         addEventHandlers();
-
         setInterval(autoAdder, game_interval_timer);
         setInterval(writeUpdates, html_update_timer);
     };
-
 
 //Add EventHandlers for shop elements automatically
 function addEventHandlers() {
@@ -64,7 +61,6 @@ function addEventHandlers() {
     for (const key in itemMap) {
         document.getElementById(key).addEventListener("click", buyItem);
     }
-
 }
 
 function onMainClickerClick () {
@@ -98,12 +94,12 @@ function buyItem(evt) {
     evt.currentTarget.removeEventListener("click", buyItem);
 }
 
-//TODO: exchane alert
+//TODO: Change alert to changing the html element
 function checkPrice(item) {
     var price = itemMap[item]["price"];
 
     if (price > currency) {
-        alert("Nicht genug Geld! Gebraucht: " + price)
+        alert("Nicht genug Geld! Gebraucht: " + price);
         return false;
     } else {
         currency -= price;
