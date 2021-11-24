@@ -23,5 +23,3 @@ Tag 1 Ziele:
     - Clemens: Styling/Layout
     - Max: JavaScript
     - Grundfunktionalität herstellen
-
-hallo max 
