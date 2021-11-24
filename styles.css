@@ -1,12 +1,81 @@
+#header {
+    display: flex;
+    justify-content: center;
+}
+
 .button_container {
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    min-height: 100vh;
+    min-height: 10vh;
     }
 
-#header {
-    display: flex;
+
+
+/* -------------Stat_Container------------------ */
+#stat_container{
+    margin: auto;
+    margin-top: px;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 45em;
+    height: 3em;
+    background-color: black;
+    border: 2px solid white;
+    padding: 80px 120px;
+}
+
+/* #income_click{
+    margin-top: auto;
+    margin-left: auto;
+    margin-right: auto;
+    width: 10em;
+    height: auto;
+    border: 2px solid white;
+    padding: 8px 12px;
+}
+
+#income_auto{
+    margin-left: auto;
+    margin-right: auto;
+    width: 10em;
+    height: auto;
+    border: 2px solid white;
+    padding: 8px 12px;
+}
+
+#current_balance{
+    margin-left: auto;
+    margin-right: auto;
+    width: 10em;
+    height: auto;
+    border: 2px solid white;
+    padding: 8px 12px;
+} */
+
+.stats_container{
+    display: inline-block;
+    border: 2px solid white;
+    margin-top: px;
     justify-content: center;
+    width: auto;
+    height: 3em;
+    padding: 8px;
+}
+
+.stats_container p{
+    display: inline-block;
+    text-align: center;
+}
+
+
+
+
+
+#achievement_container{
+
+}
+
+#shop_container{
+
 }

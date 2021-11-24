@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Big Red Button</title>
 </head>
-<body>
+<body style="background-color: dimgray;">
     <!--
         <h1>Welcome to the Big Red Button Game!</h1>   <!--ich bin für katzeee-->
 
@@ -26,11 +26,35 @@
         <input type="button" id="main_clicker" value="Klicker">
     </div>
 
-    <div id="stat_container">
-        <div id="income_stats"></div>
+<!-- -----------------------Stat_Container----------------------------------- -->
+    <div id="stat_container" style="color: white;">
 
-        <p id="current_balance"></p>
+        <div class="stats_container">
+            <label for="income_click"> <b>Income per click:</b> </label> 
+            <p id="income_click">95</p>
+        </div>
+
+        <div class="stats_container"> 
+            <label for="income_auto" id="income_auto"><b>Income per second:</b></label>
+            <p id="income_auto">10</p>
+        </div>
+
+        <div class="stats_container">
+            <label for="current_balance" id="current_balance"><b>Balance:</b> </label>
+            <p id="current_balance">1000000000000</p>
+        </div>
     </div>
+
+
+
+
+
+
+
+
+
+
+
 
     <div id="achievement_container">
         <p id="achievement1"></p>
