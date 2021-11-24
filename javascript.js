@@ -1,6 +1,9 @@
+//TODO: Check if user has enough currency to buy shop items
+//TODO: EventHandlers for achievements
 
 //Declarations
 let currency = 0;
+let lifetime_currency = 0;
 let total_clicks = 0;
 let currency_per_click = 1;
 let auto_income_rate = 0;
@@ -14,38 +17,59 @@ let autoIncomeElement = document.getElementById("income_auto");
 
 //Data Structure for buyItem(), adjust values of buyable items only here
 const itemMap = {
-    "manual" : {
-        "manual_option1" : 10,
-        "manual_option2" : 20,
+
+    "manual_option1" : {
+        "name" : "TBD",
+        "type" : "manual",
+        "price" : 1000,
+        "valueToIncrease" : "currency_per_click",
+        "increase" : 10
     },
-
-    "auto" : {
-        "auto_option1" : 2,
-        "auto_option2" : 4,
+    "manual_option2" : {
+        "name" : "TBD",
+        "type" : "manual",
+        "price" : 10000,
+        "valueToIncrease" : "currency_per_click",
+        "increase" : 20
+    },
+    "auto_option1" : {
+        "name" : "TBD",
+        "type" : "manual",
+        "price" : 15,
+        "valueToIncrease" : "auto_income_rate",
+        "increase" : 2
+    }, 
+    "auto_option2" : {
+        "name" : "TBD",
+        "type" : "manual",
+        "price" : 800,
+        "valueToIncrease" : "auto_income_rate",
+        "increase" : 4
     }
-}
-
-//EventHandler for main clicker
-document.getElementById("main_clicker").addEventListener("click", onMainClickerClick);
-
-//EventHandlers for shop elements
-document.getElementById("manual_option1").addEventListener("click", buyItem);
-document.getElementById("manual_option2").addEventListener("click", buyItem);
-document.getElementById("auto_option1").addEventListener("click", buyItem);
-document.getElementById("auto_option2").addEventListener("click", buyItem);
+} 
 
 //Executes on window load
 window.onload = function() {
+        addEventHandlers();
+
         setInterval(autoAdder, game_interval_timer);
         setInterval(writeUpdates, html_update_timer);
     };
 
-function initGame() {
-    //stub
+
+//Add EventHandlers for shop elements automatically
+function addEventHandlers() {
+    document.getElementById("main_clicker").addEventListener("click", onMainClickerClick);
+
+    for (const key in itemMap) {
+        document.getElementById(key).addEventListener("click", buyItem);
+    }
+
 }
 
 function onMainClickerClick () {
     currency += currency_per_click;
+    total_clicks += currency_per_click;
 }
 
 //Debugging function
@@ -57,6 +81,7 @@ function autoAdder() {
     currency += auto_income_rate;
 }
 
+//Writes current variable values into 
 function writeUpdates() {
     currencyElement.innerHTML = currency;
     manualIncomeElement.innerHTML = currency_per_click;
@@ -65,12 +90,23 @@ function writeUpdates() {
 
 function buyItem(evt) {
     var boughtItem = evt.currentTarget.id;
-    
-    if (boughtItem.startsWith("manual"))
-        currency_per_click += itemMap["manual"][boughtItem];
-    else
-        auto_income_rate += itemMap["auto"][boughtItem];
 
-    alert("Currency per Click: " + currency_per_click);
-    alert("Auto Income Rate: " + auto_income_rate);
+    if (!checkPrice(boughtItem)) return;
+    
+    eval(itemMap[boughtItem]["valueToIncrease"] + ' += itemMap[boughtItem]["increase"]');
+
+    evt.currentTarget.removeEventListener("click", buyItem);
+}
+
+//TODO: exchane alert
+function checkPrice(item) {
+    var price = itemMap[item]["price"];
+
+    if (price > currency) {
+        alert("Nicht genug Geld! Gebraucht: " + price)
+        return false;
+    } else {
+        currency -= price;
+        return true;
+    }
 }
