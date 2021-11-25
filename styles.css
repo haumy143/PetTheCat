@@ -29,15 +29,11 @@
 }
 
 /* ----------------------Item info------------- */
-
 .item_info{
     text-align: center;
-    display: block;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-.item_info + .manual_option1 input{
-    display: none;
-}
 
 /* -------------------Button------------------------------ */
 .button_container {
@@ -104,5 +100,6 @@
 /* -----------------Achievement Container-------------------------- */
 
 #achievement_container{
-
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
 }

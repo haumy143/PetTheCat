@@ -20,7 +20,7 @@ let autoIncomeElement = document.getElementById("income_auto");
 
 //Data Structure for buyItem(), adjust values of buyable items only here
 const itemMap = {
-    "manual_option1" : {
+    "shampoo" : {
         "name" : "Shampoo",
         "type" : "manual",
         "price" : 10,
@@ -28,7 +28,7 @@ const itemMap = {
         "increase" : 5,
         "img_path" : "content/icons/shampoo.jpg"
     },
-    "manual_option2" : {
+    "brush" : {
         "name" : "Brush",
         "type" : "manual",
         "price" : 600,
@@ -36,7 +36,7 @@ const itemMap = {
         "increase" : 20,
         "img_path" : "content/icons/brush.jpg"
     },
-    "manual_option3" : {
+    "treat" : {
         "name" : "Katzenangel",
         "type" : "Manual",
         "price" : 2000,
@@ -44,7 +44,7 @@ const itemMap = {
         "increase" : 50,
         "img_path" : "content/icons/toy1.jpg"
     },
-    "auto_option1" : {
+    "tree" : {
         "name" : "Treats",
         "type" : "auto",
         "price" : 200,
@@ -52,7 +52,7 @@ const itemMap = {
         "increase" : 2,
         "img_path" : "content/icons/treat1.png"
     }, 
-    "auto_option2" : {
+    "toy" : {
         "name" : "Kratzbaum",
         "type" : "auto",
         "price" : 1000,
@@ -60,7 +60,7 @@ const itemMap = {
         "increase" : 5,
         "img_path" : "content/icons/tree.jpg"
     },
-    "auto_option3" : {
+    "buddy" : {
         "name" : "CatBuddy",
         "type" : "auto",
         "price" : 3000,
