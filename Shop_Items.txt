@@ -5,3 +5,5 @@
     - Treats : Auto, 2 to auto income, cost: 200
     - Kratzbaum : Auto, 5 to auto income, cost: 1000
     - Cat buddy: Auto, 15 to auto income, cost 3000
+
+#shop_container #shampoo:hover 
