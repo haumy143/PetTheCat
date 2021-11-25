@@ -35,7 +35,7 @@
     display: block;
 }
 
-#manual_option1 input:hover + .item_info {
+.item_info + .manual_option1 input{
     display: none;
 }
 
@@ -74,6 +74,7 @@
     width: 500px;
     height: 100px; 
     padding: 30px 120px;
+    text-align: center;
 }
 
 .stats_container{
