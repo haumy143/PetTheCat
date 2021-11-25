@@ -1,0 +1,7 @@
+
+    - Shampoo : Manual, 5 to manual click, cost: 100
+    - Brush : Manual, 20 to manual click, cost: 600
+    - Katzenangel : Manual, 50 to manual click, cost: 2000
+    - Treats : Auto, 2 to auto income, cost: 200
+    - Kratzbaum : Auto, 5 to auto income, cost: 1000
+    - Cat buddy: Auto, 15 to auto income, cost 3000

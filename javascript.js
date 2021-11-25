@@ -21,32 +21,52 @@ let autoIncomeElement = document.getElementById("income_auto");
 //Data Structure for buyItem(), adjust values of buyable items only here
 const itemMap = {
     "manual_option1" : {
-        "name" : "TBD",
+        "name" : "Shampoo",
         "type" : "manual",
-        "price" : 1000,
+        "price" : 10,
         "valueToIncrease" : "currency_per_click",
-        "increase" : 10
+        "increase" : 5,
+        "img_path" : "content/icons/shampoo.jpg"
     },
     "manual_option2" : {
-        "name" : "TBD",
+        "name" : "Brush",
         "type" : "manual",
-        "price" : 10000,
+        "price" : 600,
         "valueToIncrease" : "currency_per_click",
-        "increase" : 20
+        "increase" : 20,
+        "img_path" : "content/icons/brush.jpg"
+    },
+    "manual_option3" : {
+        "name" : "Katzenangel",
+        "type" : "Manual",
+        "price" : 2000,
+        "valueToIncrease" : "currency_per_click",
+        "increase" : 50,
+        "img_path" : "content/icons/toy1.jpg"
     },
     "auto_option1" : {
-        "name" : "TBD",
-        "type" : "manual",
-        "price" : 15,
+        "name" : "Treats",
+        "type" : "auto",
+        "price" : 200,
         "valueToIncrease" : "auto_income_rate",
-        "increase" : 2
+        "increase" : 2,
+        "img_path" : "content/icons/treat1.png"
     }, 
     "auto_option2" : {
-        "name" : "TBD",
-        "type" : "manual",
-        "price" : 800,
+        "name" : "Kratzbaum",
+        "type" : "auto",
+        "price" : 1000,
         "valueToIncrease" : "auto_income_rate",
-        "increase" : 4
+        "increase" : 5,
+        "img_path" : "content/icons/tree.jpg"
+    },
+    "auto_option3" : {
+        "name" : "CatBuddy",
+        "type" : "auto",
+        "price" : 3000,
+        "valueToIncrease" : "auto_income_rate",
+        "increase" : 15,
+        "img_path" : "content/icons/cat_friend.jpg"
     }
 } 
 
@@ -166,6 +186,13 @@ function buyItem(evt) {
     eval(itemMap[boughtItem]["valueToIncrease"] + ' += itemMap[boughtItem]["increase"]');
 
     evt.currentTarget.removeEventListener("click", buyItem);
+
+    console.log(document.getElementById(boughtItem).childNodes[0]);
+    console.log(document.getElementById(boughtItem).childNodes[0].src);
+
+    document.getElementById(boughtItem).childNodes[0].src = itemMap[boughtItem]["img_path"];
+
+    console.log(document.getElementById(boughtItem).childNodes[0].src);
 }
 
 //TODO: Change alert to changing the html element
