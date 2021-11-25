@@ -26,52 +26,52 @@ let autoIncomeElement = document.getElementById("income_auto");
 //Data Structure for buyItem(), adjust values of buyable items only here
 const itemMap = {
     "shampoo" : {
-        "name" : "Shampoo",
         "type" : "manual",
         "price" : 10,
         "valueToIncrease" : "currency_per_click",
         "increase" : 5,
-        "img_path" : "content/icons/shampoo.jpg"
+        "img_path" : "content/icons/shampoo_bw.jpg",
+        "img_path_active" : "content/icons/shampoo.jpg"
     },
     "brush" : {
-        "name" : "Brush",
         "type" : "manual",
         "price" : 600,
         "valueToIncrease" : "currency_per_click",
         "increase" : 20,
-        "img_path" : "content/icons/brush.jpg"
+        "img_path" : "content/icons/brush_bw.jpg",
+        "img_path_active" : "content/icons/brush.jpg"
     },
     "treat" : {
-        "name" : "Treat",
         "type" : "Manual",
         "price" : 2000,
         "valueToIncrease" : "currency_per_click",
         "increase" : 50,
-        "img_path" : "content/icons/treat1.png"
+        "img_path" : "content/icons/treat1_bw.png",
+        "img_path_active" : "content/icons/treat1.png"
     },
     "tree" : {
-        "name" : "Tree",
         "type" : "auto",
         "price" : 200,
         "valueToIncrease" : "auto_income_rate",
         "increase" : 2,
-        "img_path" : "content/icons/tree.jpg"
+        "img_path" : "content/icons/tree_bw.jpg",
+        "img_path_active" : "content/icons/tree.jpg"
     }, 
     "toy" : {
-        "name" : "Katzenangel",
         "type" : "auto",
         "price" : 1000,
         "valueToIncrease" : "auto_income_rate",
         "increase" : 5,
-        "img_path" : "content/icons/toy1.jpg"
+        "img_path" : "content/icons/toy1_bw.jpg",
+        "img_path_active" : "content/icons/toy1.jpg"
     },
     "buddy" : {
-        "name" : "CatBuddy",
         "type" : "auto",
         "price" : 3000,
         "valueToIncrease" : "auto_income_rate",
         "increase" : 15,
-        "img_path" : "content/icons/cat_friend.jpg"
+        "img_path" : "content/icons/cat_friend_bw.jpg",
+        "img_path_active" : "content/icons/cat_friend.jpg"
     }
 } 
 
@@ -106,6 +106,7 @@ window.onload = function() {
         setInterval(autoAdder, game_interval_timer);
         writeUpdates();
         writeShopPrices();
+        writeShopImages();
 
         document.onmousemove = function(event) {
             pointerX = event.pageX;
@@ -116,6 +117,12 @@ window.onload = function() {
 function writeShopPrices() {
     for (const key in itemMap) {
         document.getElementById(key).getElementsByTagName("p1")[0].innerHTML = itemMap[key]["price"] + "$";
+    }
+}
+
+function writeShopImages() {
+    for (const key in itemMap) {
+        document.getElementById(key).getElementsByTagName("input")[0].src = itemMap[key]["img_path"];
     }
 }
 
@@ -144,9 +151,9 @@ function pointerCheck() {
 }
 
 function writeUpdates() {
-    currencyElement.innerHTML = currency;
-    manualIncomeElement.innerHTML = currency_per_click;
-    autoIncomeElement.innerHTML = auto_income_rate;
+    currencyElement.innerHTML = currency + '$';
+    manualIncomeElement.innerHTML = currency_per_click + '$';
+    autoIncomeElement.innerHTML = auto_income_rate + '$';
 }
 
 function achievementCheck() {
@@ -175,7 +182,7 @@ function buyItem(evt) {
     evt.currentTarget.removeEventListener("click", buyItem);
     evt.currentTarget.addEventListener("click", itemBoughtMessage);
 
-    document.getElementById(boughtItem).getElementsByTagName("input")[0].src = itemMap[boughtItem]["img_path"];
+    document.getElementById(boughtItem).getElementsByTagName("input")[0].src = itemMap[boughtItem]["img_path_active"];
 }
 
 function itemBoughtMessage(evt) {
