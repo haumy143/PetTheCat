@@ -37,28 +37,28 @@ const itemMap = {
         "img_path" : "content/icons/brush.jpg"
     },
     "treat" : {
-        "name" : "Katzenangel",
+        "name" : "Treat",
         "type" : "Manual",
         "price" : 2000,
         "valueToIncrease" : "currency_per_click",
         "increase" : 50,
-        "img_path" : "content/icons/toy1.jpg"
+        "img_path" : "content/icons/treat1.png"
     },
     "tree" : {
-        "name" : "Treats",
+        "name" : "Tree",
         "type" : "auto",
         "price" : 200,
         "valueToIncrease" : "auto_income_rate",
         "increase" : 2,
-        "img_path" : "content/icons/treat1.png"
+        "img_path" : "content/icons/tree.jpg"
     }, 
     "toy" : {
-        "name" : "Kratzbaum",
+        "name" : "Katzenangel",
         "type" : "auto",
         "price" : 1000,
         "valueToIncrease" : "auto_income_rate",
         "increase" : 5,
-        "img_path" : "content/icons/tree.jpg"
+        "img_path" : "content/icons/toy1.jpg"
     },
     "buddy" : {
         "name" : "CatBuddy",
