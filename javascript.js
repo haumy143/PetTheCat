@@ -8,7 +8,10 @@ let total_clicks = 0;
 let currency_per_click = 1;
 let auto_income_rate = 0;
 let game_interval_timer = 1000; //Add auto income every 1000ms = 1s
-let html_update_timer = 40;     //Update HTML-Elements every 40ms = 25 times/per second
+let html_update_timer = 80;     //Update HTML-Elements every 40ms = 25 times/per second
+
+var pointerX = -1;
+var pointerY = -1;
 
 //Writing elements into variables
 let currencyElement = document.getElementById("current_balance");
@@ -47,12 +50,81 @@ const itemMap = {
     }
 } 
 
+//Data Structure for achievementCheck() adjust achievement values only here
+const achievementMap = {
+    "achievement1" : {
+        "name" : "Achievement 1",
+        "valueToCheck" : "currency",
+        "valueToReach" : 20,
+        "check" : true
+    },
+    "achievement2" : {
+        "name" : "Achievement 2",
+        "valueToCheck" : "currency",
+        "valueToReach" : 50,
+        "check" : true
+    },
+    "achievement3" : {
+        "name" : "TBD",
+        "valueToCheck" : "total_clicks",
+        "valueToReach" : 100,
+        "check" : true
+    }
+}
+
+//Experimental code
+/* function createEventVariable(initial_value) {
+    var value = initial_value;
+    return {
+        getValue: function() {
+            return value;
+        },
+        setValue: function(newValue) {
+            value = newValue;
+            variableChanged(this);
+        },
+    };
+}
+
+function variableChanged(eventVariable) {
+    writeUpdates();
+} */
+
 //Executes on window load
 window.onload = function() {
         addEventHandlers();
         setInterval(autoAdder, game_interval_timer);
-        setInterval(writeUpdates, html_update_timer);
+        setInterval(gameUpdate, html_update_timer);
+
+        document.onmousemove = function(event) {
+            pointerX = event.pageX;
+            pointerY = event.pageY;
+        }
     };
+
+function pointerCheck() {
+    //stub
+	//console.log('Cursor at: '+pointerX+', '+pointerY);
+}
+
+function gameUpdate() {
+    writeUpdates();
+    achievementCheck();
+    pointerCheck();
+}
+
+function achievementCheck() {
+    for (const key in achievementMap) {
+        if (achievementMap[key]["check"] == true) {
+            eval(achievementMap[key]["valueToCheck"])
+            if (eval(achievementMap[key]["valueToCheck"] + ' >= achievementMap[key]["valueToReach"]')) {
+                document.getElementById(key).innerHTML = achievementMap[key]["name"] + " achieved!";
+                achievementMap[key]["valueToCheck"] = false;
+                return;
+            }
+        }
+    }
+}
 
 //Add EventHandlers for shop elements automatically
 function addEventHandlers() {
@@ -77,7 +149,9 @@ function autoAdder() {
     currency += auto_income_rate;
 }
 
-//Writes current variable values into 
+//Writes current variable values into HTMl Elements
+//TODO: Update so that this runs as eventListener instead of as a loop
+//Possibly use JavaScript Object with getter and setter with variables as attributes to make this work
 function writeUpdates() {
     currencyElement.innerHTML = currency;
     manualIncomeElement.innerHTML = currency_per_click;
