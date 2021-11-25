@@ -12,9 +12,13 @@ Anforderungen:
     - Temporäre Boosts
     - Sounds für das Kätzchen
     - Infos zu Items beim Hovern
+    - Katze ändert sich bei bestimmter Anzahl Punkten
 
 TO-DO:
     - Setting, Lore ausdenken (Roter Button, Katze, Tür öffnen)
+    - Shop Items die gekauft wurden ausgrauen
+    - Visuelles Feedback bei Klick implementieren
+    - Achievement Menü schön machen
 
 Data Design:
     - Manuelle Klicks, Autoklicks, Gesamtklicks, Klicks/Sekunde seperat zählen
