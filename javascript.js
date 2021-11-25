@@ -187,12 +187,10 @@ function buyItem(evt) {
 
     evt.currentTarget.removeEventListener("click", buyItem);
 
-    console.log(document.getElementById(boughtItem).childNodes[0]);
-    console.log(document.getElementById(boughtItem).childNodes[0].src);
+    /*  console.log(document.getElementById(boughtItem).firstChild);
+    console.log(document.getElementById(boughtItem).firstChild.item(0)); */
 
-    document.getElementById(boughtItem).childNodes[0].src = itemMap[boughtItem]["img_path"];
-
-    console.log(document.getElementById(boughtItem).childNodes[0].src);
+    document.getElementById(boughtItem).getElementsByTagName("input")[0].src = itemMap[boughtItem]["img_path"];
 }
 
 //TODO: Change alert to changing the html element
