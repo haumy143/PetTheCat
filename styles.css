@@ -106,7 +106,6 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    user-drag: none;
 }
 
 .main_clicker{
@@ -119,7 +118,6 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    user-drag: none;
 }
 
 .main_clicker:active{

@@ -135,7 +135,7 @@ const achievementMap = {
         "check" : true
     },
     "achievement10" : {
-        "name" : "Professional Cat Sitter",
+        "name" : "Professional Cat Sitter",   //zweimal das selbe achievement max!!!!!! literaly unplayable :( 
         "valueToCheck" : "currency",
         "valueToReach" : 2000,
         "check" : true
