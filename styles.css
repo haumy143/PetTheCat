@@ -12,6 +12,14 @@
     justify-content: center;
 }
 
+#stars{
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
 /* ----------------------Shop Container ----------------------------*/
 #shop_container{
     --num-cols: 6;
@@ -132,7 +140,7 @@
 /* -----------------Achievement Container-------------------------- */
 
 #achievement_container{
-    font-weight: 100;
+    /* font-weight: 100;
 	background: #efefef;
 	width: 150px;
 	height: 50%;
@@ -143,11 +151,11 @@
 	box-shadow: -3px 0px 5px 0px rgba(0,0,0,0.2);
 	right: -130px;
 	@include all-transition(0.3s);
-	color: #222;
+	color: #222; */
 }
 /* ------------------------Clicker Feedback -------------------------*/
 #clicker_feedback {
-    color: rgb(255, 176, 202);
+    color: rgb(255, 98, 151);
     position: absolute;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
