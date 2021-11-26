@@ -29,3 +29,7 @@ Tag 1 Ziele:
     - Clemens: Styling/Layout
     - Max: JavaScript
     - Grundfunktionalität herstellen
+
+Für die Zukunft:
+    - Miauen einbauen bei Achievements und gekauften Items
+    - Katzenbild tauscht sich aus bei Klicks
