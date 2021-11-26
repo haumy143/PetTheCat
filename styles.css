@@ -77,7 +77,6 @@
 
 .main_clicker{
     background:url(cat.png) no-repeat;
-    -webkit-user-drag: none;
     user-select: none;
     -moz-user-select: none;
     -webkit-user-select: none;
