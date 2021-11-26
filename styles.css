@@ -148,7 +148,6 @@
 /* ------------------------Clicker Feedback -------------------------*/
 #clicker_feedback {
     color: palevioletred;
-    font-family: Arial, Helvetica, sans-serif;
     position: absolute;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
