@@ -23,14 +23,16 @@ let autoIncomeElement = document.getElementById("income_auto");
 //Data Structure for buyItem(), adjust values of buyable items only here
 const itemMap = {
     "shampoo" : {
+        "displayName" : "Shampoo",
         "type" : "manual",
-        "price" : 10,
+        "price" : 100,
         "valueToIncrease" : "currency_per_click",
-        "increase" : 5,
+        "increase" : 2,
         "img_path" : "content/icons/shampoo_bw.jpg",
         "img_path_active" : "content/icons/shampoo.jpg"
     },
     "brush" : {
+        "displayName" : "Brush",
         "type" : "manual",
         "price" : 600,
         "valueToIncrease" : "currency_per_click",
@@ -39,6 +41,7 @@ const itemMap = {
         "img_path_active" : "content/icons/brush.jpg"
     },
     "treat" : {
+        "displayName" : "Treats",
         "type" : "Manual",
         "price" : 2000,
         "valueToIncrease" : "currency_per_click",
@@ -47,6 +50,7 @@ const itemMap = {
         "img_path_active" : "content/icons/treat1.png"
     },
     "tree" : {
+        "displayName" : "Scratcher",
         "type" : "auto",
         "price" : 200,
         "valueToIncrease" : "auto_income_rate",
@@ -55,6 +59,7 @@ const itemMap = {
         "img_path_active" : "content/icons/tree.jpg"
     }, 
     "toy" : {
+        "displayName" : "Toy",
         "type" : "auto",
         "price" : 1000,
         "valueToIncrease" : "auto_income_rate",
@@ -63,6 +68,7 @@ const itemMap = {
         "img_path_active" : "content/icons/toy1.jpg"
     },
     "buddy" : {
+        "displayName" : "Cat Buddy",
         "type" : "auto",
         "price" : 3000,
         "valueToIncrease" : "auto_income_rate",
@@ -103,17 +109,17 @@ window.onload = function() {
         setInterval(autoAdder, game_interval_timer);
         writeUpdates();
         writeShopContent();
-        writeShopTooltips();
-
-        document.onmousemove = function(event) {
-            pointerX = event.pageX;
-            pointerY = event.pageY;
-        }
     };
+
+document.onmousemove = function(event) {
+    pointerX = event.pageX;
+    pointerY = event.pageY;
+}
 
 function writeShopContent() {
     writeShopPrices();
     writeShopImages();
+    writeShopTooltips();
 }
 
 function writeShopPrices() {
@@ -142,7 +148,7 @@ function addEventHandlers() {
     document.getElementById("main_clicker").addEventListener("click", onMainClickerClick);
 
     for (const key in itemMap) {
-        document.getElementById(key).addEventListener("click", buyItem);
+        document.getElementById(key).getElementsByTagName("input")[0].addEventListener("click", buyItem);
     }
 }
 
@@ -151,14 +157,8 @@ function addEventHandlers() {
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 function gameUpdate() {
-    pointerCheck();
     writeUpdates();
     achievementCheck();
-}
-
-function pointerCheck() {
-    //stub
-	//console.log('Cursor at: ' + pointerX + ', ' + pointerY);
 }
 
 function clickerFeedback () {
@@ -206,7 +206,7 @@ function achievementCheck() {
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 function buyItem(evt) {
-    var boughtItem = evt.currentTarget.id;
+    var boughtItem = evt.currentTarget.parentElement.id;
 
     if (!checkPrice(boughtItem)) return;
     
@@ -216,6 +216,11 @@ function buyItem(evt) {
     evt.currentTarget.addEventListener("click", itemBoughtMessage);
 
     document.getElementById(boughtItem).getElementsByTagName("input")[0].src = itemMap[boughtItem]["img_path_active"];
+
+    if (itemMap[boughtItem]["valueToIncrease"] == "currency_per_click") var per = "click";
+    else var per = "second";
+
+    document.getElementById("status").innerHTML = "Bought " + itemMap[boughtItem]["displayName"] + "! +" + itemMap[boughtItem]["increase"] + "$ per " + per + "!";
 }
 
 function itemBoughtMessage(evt) {
