@@ -87,15 +87,81 @@ const achievementMap = {
         "check" : true
     },
     "achievement2" : {
-        "name" : "Achievement 2",
+        "name" : "Rookie Cat Sitter",
         "valueToCheck" : "currency",
         "valueToReach" : 50,
         "check" : true
     },
     "achievement3" : {
-        "name" : "TBD",
+        "name" : "Rookie Clicker",
         "valueToCheck" : "total_clicks",
         "valueToReach" : 100,
+        "check" : true
+    },
+    "achievement4" : {
+        "name" : "Getting There",
+        "valueToCheck" : "currency",
+        "valueToReach" : 250,
+        "check" : true
+    },
+    "achievement5" : {
+        "name" : "Leaning Back",
+        "valueToCheck" : "auto_income_rate",
+        "valueToReach" : 5,
+        "check" : true
+    },
+    "achievement6" : {
+        "name" : "Professional Clicker",
+        "valueToCheck" : "total_clicks",
+        "valueToReach" : 500,
+        "check" : true
+    },
+    "achievement7" : {
+        "name" : "Nouveau Riche",
+        "valueToCheck" : "currency",
+        "valueToReach" : 1000,
+        "check" : true
+    },
+    "achievement8" : {
+        "name" : "Big Bucks",
+        "valueToCheck" : "lifetime_currency",
+        "valueToReach" : 1000,
+        "check" : true
+    },
+    "achievement9" : {
+        "name" : "Master Clicker",
+        "valueToCheck" : "total_clicks",
+        "valueToReach" : 1000,
+        "check" : true
+    },
+    "achievement10" : {
+        "name" : "Professional Cat Sitter",
+        "valueToCheck" : "currency",
+        "valueToReach" : 2000,
+        "check" : true
+    },
+    "achievement11" : {
+        "name" : "Professional Cat Sitter",
+        "valueToCheck" : "auto_income_rate",
+        "valueToReach" : 20,
+        "check" : true
+    },
+    "achievement12" : {
+        "name" : "Auto Cat Sitter",
+        "valueToCheck" : "auto_income_rate",
+        "valueToReach" : 20,
+        "check" : true
+    },
+    "achievement13" : {
+        "name" : "Master Cat Sitter",
+        "valueToCheck" : "currency",
+        "valueToReach" : 5000,
+        "check" : true
+    },
+    "achievement14" : {
+        "name" : "Sage Clicker",
+        "valueToCheck" : "total_clicks",
+        "valueToReach" : 5000,
         "check" : true
     }
 }
@@ -199,9 +265,11 @@ function achievementCheck() {
                 if (achievementMap[key]["valueToCheck"] == "currency_per_click") {
                     var per = "click";
                 } else if (achievementMap[key]["valueToCheck"] == "total_clicks") {
-                    var per = "total clicks";
+                    var per = "manual clicks";
                 } else if (achievementMap[key]["valueToCheck"] == "currency") {
                     var per = "$ in your wallet";
+                } else if (achievementMap[key]["valueToCheck"] == "lifetime_currency") {
+                    var per = "$ over your career";
                 } else {
                     var per = "$/second";
                 }
@@ -262,6 +330,7 @@ function checkPrice(item) {
 
 function onMainClickerClick () {
     currency += currency_per_click;
+    lifetime_currency += currency_per_click;
     total_clicks += currency_per_click;
     gameUpdate();
     clickerFeedback();
