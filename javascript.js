@@ -1,6 +1,3 @@
-//TODO: Check if user has enough currency to buy shop items
-//TODO: EventHandlers for achievements
-
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //-----------------------------DECLARATIONS----------------------------
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -105,14 +102,18 @@ window.onload = function() {
         addEventHandlers();
         setInterval(autoAdder, game_interval_timer);
         writeUpdates();
-        writeShopPrices();
-        writeShopImages();
+        writeShopContent();
 
         document.onmousemove = function(event) {
             pointerX = event.pageX;
             pointerY = event.pageY;
         }
     };
+
+function writeShopContent() {
+    writeShopPrices();
+    writeShopImages();
+}
 
 function writeShopPrices() {
     for (const key in itemMap) {
@@ -126,6 +127,10 @@ function writeShopImages() {
     }
 }
 
+function writeShopTooltips() {
+    //stub
+}
+
 //Add EventHandlers for shop elements automatically
 function addEventHandlers() {
     document.getElementById("main_clicker").addEventListener("click", onMainClickerClick);
@@ -134,6 +139,8 @@ function addEventHandlers() {
         document.getElementById(key).addEventListener("click", buyItem);
     }
 }
+
+
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //--------------------------UPDATE FUNCTIONS---------------------------
@@ -148,6 +155,28 @@ function gameUpdate() {
 function pointerCheck() {
     //stub
 	//console.log('Cursor at: ' + pointerX + ', ' + pointerY);
+}
+
+function addClickerFeedback () {
+    content = "Klick!";
+
+    var newDiv = document.createElement("div");
+    placeDiv(newDiv);
+
+    var newContent = document.createTextNode(content);
+    newDiv.id = "clicker_feedback";
+    newDiv.appendChild(newContent);
+
+    var currentElement = document.getElementById("button_container");
+    document.body.insertBefore(newDiv, currentElement);
+
+    setTimeout(() => { newDiv.remove(); }, 500);
+}
+
+function placeDiv(d) {
+    d.style.position = "absolute";
+    d.style.left = pointerX+'px';
+    d.style.top = pointerY+'px';
 }
 
 function writeUpdates() {
@@ -209,6 +238,7 @@ function onMainClickerClick () {
     currency += currency_per_click;
     total_clicks += currency_per_click;
     gameUpdate();
+    addClickerFeedback();
 }
 
 function autoAdder() {
