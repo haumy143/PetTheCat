@@ -201,7 +201,6 @@ function writeShopImages() {
 }
 
 function writeShopTooltips() {
-
     for (const key in itemMap) {
         if (itemMap[key]["valueToIncrease"] == "currency_per_click") var per = "click";
         else var per = "second";
@@ -260,7 +259,6 @@ function achievementCheck() {
         if (achievementMap[key]["check"] == true) {
             if (eval(achievementMap[key]["valueToCheck"] + ' >= achievementMap[key]["valueToReach"]')) {
                 document.getElementById(key).getElementsByTagName("p")[0].innerHTML = achievementMap[key]["name"];
-                //document.getElementById(key).innerHTML = achievementMap[key]["name"];
 
                 if (achievementMap[key]["valueToCheck"] == "currency_per_click") {
                     var per = "click";
