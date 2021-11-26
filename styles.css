@@ -142,18 +142,11 @@
 /* -----------------Achievement Container-------------------------- */
 
 #achievement_container{
-    /* font-weight: 100;
-	background: #efefef;
-	width: 150px;
-	height: 50%;
-	padding-left: 50px;
-	position: fixed;
-	z-index: 1;
-	-webkit-box-shadow: -3px 0px 5px 0px rgba(0,0,0,0.2);
-	box-shadow: -3px 0px 5px 0px rgba(0,0,0,0.2);
-	right: -130px;
-	@include all-transition(0.3s);
-	color: #222; */
+    position: fixed;
+}
+
+#achievement_container #title{
+    font-size: x-large;    
 }
 /* ------------------------Clicker Feedback -------------------------*/
 #clicker_feedback {
