@@ -1,7 +1,15 @@
+@font-face {
+    font-family: 'CustomFont';
+    src:  url('fonts/GistLight.otf');
+}
+
+* {
+    font-family: 'CustomFont';
+}
+
 #header {
     display: flex;
     justify-content: center;
-
 }
 
 /* ----------------------Shop Container ----------------------------*/
@@ -71,7 +79,11 @@
 
 .main_clicker{
     background:url(cat.png) no-repeat;
-    
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 
 .main_clicker:active{
@@ -154,5 +166,3 @@
     from {opacity: 1; margin: 0px;}
     to {opacity: 0; margin: 50px;}
 }
-
-

@@ -174,9 +174,12 @@ function addClickerFeedback () {
 }
 
 function placeDiv(d) {
+    //pointerY -= 20;
     d.style.position = "absolute";
     d.style.left = pointerX+'px';
     d.style.top = pointerY+'px';
+    //pointerY += 20;
+    //pointerCheck();
 }
 
 function writeUpdates() {
