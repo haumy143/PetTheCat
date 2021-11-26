@@ -193,12 +193,15 @@ function achievementCheck() {
     for (const key in achievementMap) {
         if (achievementMap[key]["check"] == true) {
             if (eval(achievementMap[key]["valueToCheck"] + ' >= achievementMap[key]["valueToReach"]')) {
+                //document.getElementById(key).getElementsByTagName("p")[0].innerHTML = achievementMap[key]["name"];
                 document.getElementById(key).innerHTML = achievementMap[key]["name"];
 
                 if (achievementMap[key]["valueToCheck"] == "currency_per_click") {
                     var per = "click";
                 } else if (achievementMap[key]["valueToCheck"] == "total_clicks") {
                     var per = "total clicks";
+                } else if (achievementMap[key]["valueToCheck"] == "currency") {
+                    var per = "$ in your wallet";
                 } else {
                     var per = "$/second";
                 }
@@ -206,6 +209,8 @@ function achievementCheck() {
                 var awarded = "Awarded for reaching " + achievementMap[key]["valueToReach"] + " " + per + "!";
 
                 document.getElementById("status").innerHTML = "New achievement unlocked: " + achievementMap[key]["name"] + "! " + awarded;
+                //document.getElementById(key).getElementsByTagName("span")[0].innerHTML = awarded;
+
                 achievementMap[key]["valueToCheck"] = false;
                 return;
             }
