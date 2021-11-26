@@ -103,6 +103,7 @@ window.onload = function() {
         setInterval(autoAdder, game_interval_timer);
         writeUpdates();
         writeShopContent();
+        writeShopTooltips();
 
         document.onmousemove = function(event) {
             pointerX = event.pageX;
@@ -128,7 +129,12 @@ function writeShopImages() {
 }
 
 function writeShopTooltips() {
-    //stub
+
+    for (const key in itemMap) {
+        if (itemMap[key]["valueToIncrease"] == "currency_per_click") var per = "click";
+        else var per = "second";
+        document.getElementById(key).getElementsByTagName("span")[0].innerHTML = "+ " + itemMap[key]["increase"] + "$ per " + per;
+    }
 }
 
 //Add EventHandlers for shop elements automatically
@@ -139,8 +145,6 @@ function addEventHandlers() {
         document.getElementById(key).addEventListener("click", buyItem);
     }
 }
-
-
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //--------------------------UPDATE FUNCTIONS---------------------------
@@ -157,8 +161,8 @@ function pointerCheck() {
 	//console.log('Cursor at: ' + pointerX + ', ' + pointerY);
 }
 
-function addClickerFeedback () {
-    content = "Klick!";
+function clickerFeedback () {
+    content = "+ " + currency_per_click + "$";
 
     var newDiv = document.createElement("div");
     placeDiv(newDiv);
@@ -174,12 +178,9 @@ function addClickerFeedback () {
 }
 
 function placeDiv(d) {
-    //pointerY -= 20;
     d.style.position = "absolute";
     d.style.left = pointerX+'px';
     d.style.top = pointerY+'px';
-    //pointerY += 20;
-    //pointerCheck();
 }
 
 function writeUpdates() {
@@ -241,7 +242,7 @@ function onMainClickerClick () {
     currency += currency_per_click;
     total_clicks += currency_per_click;
     gameUpdate();
-    addClickerFeedback();
+    clickerFeedback();
 }
 
 function autoAdder() {
