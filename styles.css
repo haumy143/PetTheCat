@@ -132,3 +132,23 @@
 	@include all-transition(0.3s);
 	color: #222;
 }
+/* ------------------------Clicker Feedback -------------------------*/
+#clicker_feedback {
+    color: palevioletred;
+    position: absolute;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    animation-name: fade_out;
+    animation-duration: 600ms;
+    font-size: xx-large;
+    pointer-events: none;
+}
+
+@keyframes fade_out {
+    from {opacity: 1; margin: 0px;}
+    to {opacity: 0; margin: 50px;}
+}
