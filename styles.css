@@ -20,6 +20,32 @@
     transform: rotate(180deg);
 }
 
+/* -----------------Achievement Container-------------------------- */
+
+#achievement_container{
+    position: fixed;
+}
+
+#achievement_container #title{
+    font-size: x-large;    
+}
+
+.achievement .achievement_tooltip{
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 2;
+}
+
+.achievement:hover .achievement_tooltip{
+    visibility: visible;
+}
+
 /* ----------------------Shop Container ----------------------------*/
 #shop_container{
     --num-cols: 6;
@@ -139,15 +165,7 @@
     z-index: 0;
 }
 
-/* -----------------Achievement Container-------------------------- */
 
-#achievement_container{
-    position: fixed;
-}
-
-#achievement_container #title{
-    font-size: x-large;    
-}
 /* ------------------------Clicker Feedback -------------------------*/
 #clicker_feedback {
     color: rgb(255, 98, 151);
