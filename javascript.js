@@ -1,72 +1,74 @@
-//TODO: Check if user has enough currency to buy shop items
-//TODO: EventHandlers for achievements
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//-----------------------------DECLARATIONS----------------------------
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-//Declarations
 let currency = 0;
 let lifetime_currency = 0;
 let total_clicks = 0;
 let currency_per_click = 1;
 let auto_income_rate = 0;
 let game_interval_timer = 1000; //Add auto income every 1000ms = 1s
-let html_update_timer = 80;     //Update HTML-Elements every 40ms = 25 times/per second
 
 var pointerX = -1;
 var pointerY = -1;
 
-//Writing elements into variables
 let currencyElement = document.getElementById("current_balance");
 let manualIncomeElement = document.getElementById("income_click");
 let autoIncomeElement = document.getElementById("income_auto");
 
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//---------------------------DATA STRUCTURES---------------------------
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 //Data Structure for buyItem(), adjust values of buyable items only here
 const itemMap = {
     "shampoo" : {
-        "name" : "Shampoo",
         "type" : "manual",
         "price" : 10,
         "valueToIncrease" : "currency_per_click",
         "increase" : 5,
-        "img_path" : "content/icons/shampoo.jpg"
+        "img_path" : "content/icons/shampoo_bw.jpg",
+        "img_path_active" : "content/icons/shampoo.jpg"
     },
     "brush" : {
-        "name" : "Brush",
         "type" : "manual",
         "price" : 600,
         "valueToIncrease" : "currency_per_click",
         "increase" : 20,
-        "img_path" : "content/icons/brush.jpg"
+        "img_path" : "content/icons/brush_bw.jpg",
+        "img_path_active" : "content/icons/brush.jpg"
     },
     "treat" : {
-        "name" : "Katzenangel",
         "type" : "Manual",
         "price" : 2000,
         "valueToIncrease" : "currency_per_click",
         "increase" : 50,
-        "img_path" : "content/icons/toy1.jpg"
+        "img_path" : "content/icons/treat1_bw.png",
+        "img_path_active" : "content/icons/treat1.png"
     },
     "tree" : {
-        "name" : "Treats",
         "type" : "auto",
         "price" : 200,
         "valueToIncrease" : "auto_income_rate",
         "increase" : 2,
-        "img_path" : "content/icons/treat1.png"
+        "img_path" : "content/icons/tree_bw.jpg",
+        "img_path_active" : "content/icons/tree.jpg"
     }, 
     "toy" : {
-        "name" : "Kratzbaum",
         "type" : "auto",
         "price" : 1000,
         "valueToIncrease" : "auto_income_rate",
         "increase" : 5,
-        "img_path" : "content/icons/tree.jpg"
+        "img_path" : "content/icons/toy1_bw.jpg",
+        "img_path_active" : "content/icons/toy1.jpg"
     },
     "buddy" : {
-        "name" : "CatBuddy",
         "type" : "auto",
         "price" : 3000,
         "valueToIncrease" : "auto_income_rate",
         "increase" : 15,
-        "img_path" : "content/icons/cat_friend.jpg"
+        "img_path" : "content/icons/cat_friend_bw.jpg",
+        "img_path_active" : "content/icons/cat_friend.jpg"
     }
 } 
 
@@ -92,29 +94,15 @@ const achievementMap = {
     }
 }
 
-//Experimental code
-/* function createEventVariable(initial_value) {
-    var value = initial_value;
-    return {
-        getValue: function() {
-            return value;
-        },
-        setValue: function(newValue) {
-            value = newValue;
-            variableChanged(this);
-        },
-    };
-}
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//------------------------INITIALIZING FUNCTIONS-----------------------
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-function variableChanged(eventVariable) {
-    writeUpdates();
-} */
-
-//Executes on window load
 window.onload = function() {
         addEventHandlers();
         setInterval(autoAdder, game_interval_timer);
-        setInterval(gameUpdate, html_update_timer);
+        writeUpdates();
+        writeShopContent();
 
         document.onmousemove = function(event) {
             pointerX = event.pageX;
@@ -122,28 +110,25 @@ window.onload = function() {
         }
     };
 
-function pointerCheck() {
-    //stub
-	//console.log('Cursor at: '+pointerX+', '+pointerY);
+function writeShopContent() {
+    writeShopPrices();
+    writeShopImages();
 }
 
-function gameUpdate() {
-    writeUpdates();
-    achievementCheck();
-    pointerCheck();
-}
-
-function achievementCheck() {
-    for (const key in achievementMap) {
-        if (achievementMap[key]["check"] == true) {
-            eval(achievementMap[key]["valueToCheck"])
-            if (eval(achievementMap[key]["valueToCheck"] + ' >= achievementMap[key]["valueToReach"]')) {
-                document.getElementById(key).innerHTML = achievementMap[key]["name"] + " achieved!";
-                achievementMap[key]["valueToCheck"] = false;
-                return;
-            }
-        }
+function writeShopPrices() {
+    for (const key in itemMap) {
+        document.getElementById(key).getElementsByTagName("p1")[0].innerHTML = itemMap[key]["price"] + "$";
     }
+}
+
+function writeShopImages() {
+    for (const key in itemMap) {
+        document.getElementById(key).getElementsByTagName("input")[0].src = itemMap[key]["img_path"];
+    }
+}
+
+function writeShopTooltips() {
+    //stub
 }
 
 //Add EventHandlers for shop elements automatically
@@ -155,28 +140,69 @@ function addEventHandlers() {
     }
 }
 
-function onMainClickerClick () {
-    currency += currency_per_click;
-    total_clicks += currency_per_click;
+
+
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//--------------------------UPDATE FUNCTIONS---------------------------
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+function gameUpdate() {
+    pointerCheck();
+    writeUpdates();
+    achievementCheck();
 }
 
-//Debugging function
-function d_print_currency() {
-    console.log(currency);
+function pointerCheck() {
+    //stub
+	//console.log('Cursor at: ' + pointerX + ', ' + pointerY);
 }
 
-function autoAdder() {
-    currency += auto_income_rate;
+function addClickerFeedback () {
+    content = "Klick!";
+
+    var newDiv = document.createElement("div");
+    placeDiv(newDiv);
+
+    var newContent = document.createTextNode(content);
+    newDiv.id = "clicker_feedback";
+    newDiv.appendChild(newContent);
+
+    var currentElement = document.getElementById("button_container");
+    document.body.insertBefore(newDiv, currentElement);
+
+    setTimeout(() => { newDiv.remove(); }, 500);
 }
 
-//Writes current variable values into HTMl Elements
-//TODO: Update so that this runs as eventListener instead of as a loop
-//Possibly use JavaScript Object with getter and setter with variables as attributes to make this work
+function placeDiv(d) {
+    //pointerY -= 20;
+    d.style.position = "absolute";
+    d.style.left = pointerX+'px';
+    d.style.top = pointerY+'px';
+    //pointerY += 20;
+    //pointerCheck();
+}
+
 function writeUpdates() {
-    currencyElement.innerHTML = currency;
-    manualIncomeElement.innerHTML = currency_per_click;
-    autoIncomeElement.innerHTML = auto_income_rate;
+    currencyElement.innerHTML = currency + '$';
+    manualIncomeElement.innerHTML = currency_per_click + '$';
+    autoIncomeElement.innerHTML = auto_income_rate + '$';
 }
+
+function achievementCheck() {
+    for (const key in achievementMap) {
+        if (achievementMap[key]["check"] == true) {
+            if (eval(achievementMap[key]["valueToCheck"] + ' >= achievementMap[key]["valueToReach"]')) {
+                document.getElementById(key).innerHTML = achievementMap[key]["name"] + " achieved!";
+                achievementMap[key]["valueToCheck"] = false;
+                return;
+            }
+        }
+    }
+}
+
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//----------------------------SHOP FUNCTIONS---------------------------
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 function buyItem(evt) {
     var boughtItem = evt.currentTarget.id;
@@ -186,24 +212,39 @@ function buyItem(evt) {
     eval(itemMap[boughtItem]["valueToIncrease"] + ' += itemMap[boughtItem]["increase"]');
 
     evt.currentTarget.removeEventListener("click", buyItem);
+    evt.currentTarget.addEventListener("click", itemBoughtMessage);
 
-    console.log(document.getElementById(boughtItem).childNodes[0]);
-    console.log(document.getElementById(boughtItem).childNodes[0].src);
-
-    document.getElementById(boughtItem).childNodes[0].src = itemMap[boughtItem]["img_path"];
-
-    console.log(document.getElementById(boughtItem).childNodes[0].src);
+    document.getElementById(boughtItem).getElementsByTagName("input")[0].src = itemMap[boughtItem]["img_path_active"];
 }
 
-//TODO: Change alert to changing the html element
+function itemBoughtMessage(evt) {
+    document.getElementById("status").innerHTML = "You already bought this item!";
+}
+
 function checkPrice(item) {
     var price = itemMap[item]["price"];
 
     if (price > currency) {
-        alert("Nicht genug Geld! Gebraucht: " + price);
+        document.getElementById("status").innerHTML = "You can't buy this! You need " + price + "$!";
         return false;
     } else {
         currency -= price;
         return true;
     }
+}
+
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//-----------------------------MAIN ADDERS-----------------------------
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+function onMainClickerClick () {
+    currency += currency_per_click;
+    total_clicks += currency_per_click;
+    gameUpdate();
+    addClickerFeedback();
+}
+
+function autoAdder() {
+    currency += auto_income_rate;
+    gameUpdate();
 }

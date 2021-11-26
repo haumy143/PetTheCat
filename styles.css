@@ -1,7 +1,15 @@
+@font-face {
+    font-family: 'CustomFont';
+    src:  url('fonts/GistLight.otf');
+}
+
+* {
+    font-family: 'CustomFont';
+}
+
 #header {
     display: flex;
     justify-content: center;
-
 }
 
 /* ----------------------Shop Container ----------------------------*/
@@ -60,17 +68,22 @@
     text-align: center;
     height: 568px;
     width:  860px;
-    -webkit-user-drag: none;
-    user-select: none;
-    -moz-user-select: none;
+    -webkit-touch-callout: none;
     -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
     -ms-user-select: none;
+    user-select: none;
 
 }
 
 .main_clicker{
     background:url(cat.png) no-repeat;
-    
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 
 .main_clicker:active{
